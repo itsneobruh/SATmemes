@@ -22,8 +22,6 @@ steps:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
     archiveFile: '$(System.DefaultWorkingDirectory)/build.zip' 
 
-
-
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(System.DefaultWorkingDirectory)/build.zip' 

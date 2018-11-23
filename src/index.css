@@ -31,7 +31,7 @@ body{
 }
 
 .car-heading {
-  display: flex;
+  display: ruby;
   align-items: left;
   justify-content: left;
   font-weight: normal;
@@ -45,6 +45,7 @@ body{
   justify-content: center;
   background-color: #eeeeee;
   overflow: hidden;
+  margin-right: 0%;
 }
 
 .car-img img {

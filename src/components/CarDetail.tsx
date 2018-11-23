@@ -17,7 +17,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
             open: false
         }
         this.updateCar = this.updateCar.bind(this)
-        this.deleteCar = this.deleteCar.bind(this)
+
     }
 
 	public render() {
@@ -73,6 +73,22 @@ export default class CarDetail extends React.Component<IProps, IState> {
     private downloadCar(url: any) {
         window.open(url);
     }
+    private deleteCar(id: any) {
+        const url = "http://themsacarapi.azurewebsites.net/api/CarItem/" + id
+    
+        fetch(url, {
+            method: 'DELETE'
+        })
+        .then((response : any) => {
+            if (!response.ok) {
+                // Error Response
+                alert(response.statusText)
+            }
+            else {
+                location.reload()
+            }
+        })
+    }
     private updateCar(){
         const titleInput = document.getElementById("car-edit-title-input") as HTMLInputElement
         const tagInput = document.getElementById("car-edit-tag-input") as HTMLInputElement
@@ -108,20 +124,5 @@ export default class CarDetail extends React.Component<IProps, IState> {
             }
         })
     }
-    private deleteCar(id: any) {
-        const url = "http://themsacarapi.azurewebsites.net/api/CarItem/" + id
-    
-        fetch(url, {
-            method: 'DELETE'
-        })
-        .then((response : any) => {
-            if (!response.ok) {
-                // Error Response
-                alert(response.statusText)
-            }
-            else {
-                location.reload()
-            }
-        })
-    }
+   
 }

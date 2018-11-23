@@ -6,8 +6,6 @@ import CarList from './components/CarList';
 import PatrickLogo from './patrick-logo.png';
 
 
-
-
 interface IState {
 	currentCar: any,
 	cars: any[],
@@ -29,9 +27,6 @@ class App extends React.Component<{}, IState> {
 		this.fetchCars("")
 		this.handleFileUpload = this.handleFileUpload.bind(this)
 		this.uploadCar = this.uploadCar.bind(this)
-
-
-this.fetchCars("")	
 	}
 
 	public render() {
@@ -58,7 +53,7 @@ this.fetchCars("")
 				<form>
 					<div className="form-group">
 						<label>Car Title</label>
-						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="car-image-input" />
+						<input type="text" className="form-control" id="car-title-input" placeholder="Enter Title" />
 						<small className="form-text text-muted">You can edit any car later</small>
 					</div>
 					<div className="form-group">
@@ -68,7 +63,7 @@ this.fetchCars("")
 					</div>
 					<div className="form-group">
 						<label>Image</label>
-						<CarList Cars={this.state.cars} selectNewCar={this.selectNewCar} searchByTag={this.fetchCars}/>
+						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="car-image-input" />
 					</div>
 
 					<button type="button" className="btn" onClick={this.uploadCar}>Upload</button>
@@ -89,12 +84,13 @@ this.fetchCars("")
 		this.setState({ open: false });
 	};
 	
-	// Change selected meme
+	// Change selected car
 	private selectNewCar(newCar: any) {
 		this.setState({
 			currentCar: newCar
 		})
 	}
+	// GET Cars
 	private fetchCars(tag: any) {
 		
 		let url = "https://thecarapi.azurewebsites.net/api/CarItems"
@@ -123,6 +119,7 @@ this.fetchCars("")
 			uploadFileList: fileList.target.files
 		})
 	}
+	// POST car
 	private uploadCar() {
 		const titleInput = document.getElementById("car-title-input") as HTMLInputElement
 		const tagInput = document.getElementById("car-tag-input") as HTMLInputElement
