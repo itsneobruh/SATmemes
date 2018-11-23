@@ -82,7 +82,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
         }
     
         const currentCar = this.props.currentCar
-        const url = "http://msacarapi.azurewebsites.net/api/meme/" + currentCar.id
+        const url = "http://themsacarapi.azurewebsites.net/api/CarItems/" + currentCar.id
         const updatedTitle = titleInput.value
         const updatedTag = tagInput.value
         fetch(url, {
@@ -92,8 +92,9 @@ export default class CarDetail extends React.Component<IProps, IState> {
                 "tags": updatedTag,
                 "title": updatedTitle,
                 "uploaded": currentCar.uploaded,
-                "url": currentCar.url,
-                "width": currentCar.width
+                "width": currentCar.width,
+                "Engine": currentCar.Engine,
+                "Cylinders":currentCar.Cylinders
             }),
             headers: {'cache-control': 'no-cache','Content-Type': 'application/json'},
             method: 'PUT'
@@ -108,7 +109,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
         })
     }
     private deleteCar(id: any) {
-        const url = "http://msacarapi.azurewebsites.net/api/CarItem/" + id
+        const url = "http://themsacarapi.azurewebsites.net/api/CarItem/" + id
     
         fetch(url, {
             method: 'DELETE'

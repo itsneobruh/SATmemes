@@ -1,34 +1,36 @@
 body{
   background-color:#ffffff;
-  font-family: Helvetica;
+  font-family: Calibri;
 }
 
 /* Header */
 .header-wrapper {
-  background-color: #fafafa;
-  border-bottom: 1px solid #eeeeee;
+  background-color: #020202;
+  border-bottom: 2px solid #f80202;
   width: 100%;
-  height: 60px;
+  height: 150px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Impact";
   font-weight: bold;
   position: relative;
-  padding-top: 10px;
+  padding-top: 20px;
+  font-size: 8ch;
+
 }
 
 /* Selected Meme */
-.meme-wrapper {
-  padding-top:20px;
-  padding-left: 30px;
-  padding-right: 30px;
+.car-wrapper {
+  padding-top:10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.meme-heading {
+.car-heading {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -36,7 +38,7 @@ body{
   font-size: 18px;
 }
 
-.meme-img {
+.car-img {
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -45,12 +47,12 @@ body{
   overflow: hidden;
 }
 
-.meme-img img {
+.car-img img {
   max-height: calc(100vh - 220px);
   width: 100%;
 }
 
-.meme-date {
+.car-date {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -59,7 +61,7 @@ body{
   margin-top: 0px;
 }
 
-.meme-done-button {
+.car-done-button {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -70,8 +72,8 @@ body{
 
 .btn-action{
   font-family: Helvetica;
-  background-color:#f5a623;
-  border-color: #f5a623;
+  background-color:#333331;
+  border-color: #000000;
   height:40px;
   margin-right: 10px;
   font-size:18px;
@@ -81,30 +83,30 @@ body{
 }
 
 .btn-action:hover {
-  background-color: #d18c1b;
-  border-color: #d18c1b;
+  background-color: #f15555;
+  border-color: #f15555;
 }
 
 .btn-add {
   position: absolute;
-  right: 0px;
+  right: 1px;
 }
 
 /* Meme List */
-.meme-list-wrapper {
+.car-list-wrapper {
   padding-top:20px;
 }
 
-.meme-list-table {
+.car-list-table {
   margin-top: 20px;
-  height: calc(100vh - 140px);
-  overflow-y: scroll;
-  cursor: pointer;
+  cursor:context-menu;
+  margin-left: 0%;
+
 }
 
 .search-button:hover {
-  background-color: #d18c1b;
-  border-color: #d18c1b;
+  background-color: #f15555;
+  border-color: #000000;
   color: white;
 }
 

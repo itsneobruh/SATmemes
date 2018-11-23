@@ -40,7 +40,7 @@ this.fetchCars("")
 		<div>
 			<div className="header-wrapper">
 				<div className="container header">
-					<img src={PatrickLogo} height='40'/>&nbsp; JDM Garage &nbsp;
+					<img src={PatrickLogo} height='60'/>&nbsp; JDM Garage &nbsp;
 					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add </div>
 				</div>
 			</div>
@@ -97,7 +97,7 @@ this.fetchCars("")
 	}
 	private fetchCars(tag: any) {
 		
-		let url = "https://redo-msacarapi.azurewebsites.net/api/CarItems"
+		let url = "https://thecarapi.azurewebsites.net/api/CarItems"
 		if (tag !== "") {
 			url += "/tag?=" + tag
 			
@@ -110,7 +110,7 @@ this.fetchCars("")
 		.then(json => {
 			let currentCar = json[0]
 			if (currentCar === undefined) {
-				currentCar = {"id":0, "title":"tag","uploaded":"","width":"0","height":"0"}
+				currentCar = {"Title":"Nothing to see here",}
 			}
 			this.setState({
 				currentCar,
@@ -134,7 +134,7 @@ this.fetchCars("")
 	
 		const title = titleInput.value
 		const tag = tagInput.value
-		const url = "https://redo-msacarapi.azurewebsites.net/api/CarItems/upload"
+		const url = "https://themsacarapi.azurewebsites.net/api/CarItems/upload"
 	
 		const formData = new FormData()
 		formData.append("Title", title)
