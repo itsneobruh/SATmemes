@@ -8,23 +8,27 @@ import * as Webcam from "react-webcam";
 
 
 interface IState {
+	
 	currentCar: any,
 	cars: any[],
 	open: boolean,
 	uploadFileList: any,
 	authenticated: boolean,
-	refCamera: any
+	refCamera: any,
+	predictionResult:any
 }
 
 class App extends React.Component<{}, IState> {
-	constructor(props: any) {
+	constructor(props: any,) {
         super(props)
         this.state = {
 			currentCar: {"id":0, "title":"Loading ","url":"","tags":"Cars","":"","width":"0","height":"0","Engine":"cc","Cylinder":"0",},
 			cars: [],
 			open: false,
-			uploadFileList: null,authenticated: false,
+			uploadFileList: null,
+			authenticated: false,
 			refCamera: React.createRef(),
+			predictionResult: React.createRef(),
 		}     	
 		this.selectNewCar = this.selectNewCar.bind(this)
 		this.fetchCars = this.fetchCars.bind(this)
@@ -32,7 +36,7 @@ class App extends React.Component<{}, IState> {
 		this.handleFileUpload = this.handleFileUpload.bind(this)
 		this.uploadCar = this.uploadCar.bind(this)
 		this.authenticate = this.authenticate.bind(this)
-		
+	
 
 	}
 	
@@ -96,7 +100,7 @@ class App extends React.Component<{}, IState> {
 	}
 	// Call custom vision model
 private getFaceRecognitionResult(image: string) {
-	const url = "API-KEY:https://southcentralus.api.cognitive.microsoft.com/customvision/v2.0/Prediction/0dc26afa-22c6-414a-a7b5-d74474411641/image"
+	const url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v2.0/Prediction/0dc26afa-22c6-414a-a7b5-d74474411641/image"
 	
 	if (image === null) {
 		return;
@@ -107,7 +111,7 @@ private getFaceRecognitionResult(image: string) {
 	fetch(url, {
 		body: byteArray,
 		headers: {
-			'cache-control': 'no-cache', 'Prediction-Key':'0dc26afa-22c6-414a-a7b5-d74474411641', 'API-KEY':'https://southcentralus.api.cognitive.microsoft.com/customvision/v2.0/Prediction/0dc26afa-22c6-414a-a7b5-d74474411641/image','Content-Type': 'application/octet-stream'
+			'cache-control': 'no-cache', 'Prediction-Key':'0dc26afa-22c6-414a-a7b5-d74474411641', 'API-KEY':'8e0e66818132417fa70274b1368df125','Content-Type': 'application/octet-stream'
 		},
 		method: 'POST'
 	})
@@ -118,9 +122,17 @@ private getFaceRecognitionResult(image: string) {
 			} else {
 				response.json().then((json: any) => {
 					console.log(json.predictions[0])
-				})
-			}
-		})
+
+					this.setState({predictionResult: json.predictions[0] })
+					if (this.state.predictionResult.probability > 0.7) {
+						this.setState({authenticated: true})
+					} else {
+						this.setState({authenticated: false})
+						
+					}
+			})
+		}		
+	})
 }
 	// Authenticate
 	private authenticate() { 
