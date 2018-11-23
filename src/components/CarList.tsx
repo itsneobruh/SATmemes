@@ -39,7 +39,7 @@ export default class CarList extends React.Component<IProps, {}> {
 		);
     }
 
-    // Construct table using meme list
+    // Construct table using car list
 	private createTable() {
         const table:any[] = []
         const carList = this.props.Cars
@@ -58,7 +58,7 @@ export default class CarList extends React.Component<IProps, {}> {
         return table
     }
     
-    // Meme selection handler to display selected meme in details component
+    // car selection handler to display selected car in details component
     private selectRow(index: any) {
         const selectedCar = this.props.Cars[index]
         if (selectedCar != null) {
@@ -66,7 +66,7 @@ export default class CarList extends React.Component<IProps, {}> {
         }
     }
 
-    // Search meme by tag
+    // Search car by tag
     private searchByTag() {
         const textBox = document.getElementById("search-tag-textbox") as HTMLInputElement
         if (textBox === null) {

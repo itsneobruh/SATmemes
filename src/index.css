@@ -23,7 +23,7 @@ body{
 
 }
 
-/* Selected Meme */
+/* Selected car */
 .car-wrapper {
   padding-top:10px;
   padding-left: 10px;
@@ -93,7 +93,7 @@ body{
   right: 1px;
 }
 
-/* Meme List */
+/* car List */
 .car-list-wrapper {
   padding-top:20px;
 }

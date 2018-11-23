@@ -1,10 +1,10 @@
 import './App.css';
 import CarDetail from './components/CarDetail';
 import CarList from './components/CarList';
-import PatrickLogo from './patrick-logo.png';
 import Modal from 'react-responsive-modal';
 import * as React from 'react';
 import * as Webcam from "react-webcam";
+import domologo from './domo-logo.png';
 
 
 interface IState {
@@ -56,14 +56,14 @@ class App extends React.Component<{}, IState> {
 				/>
 				<div className="row nav-row">
 					<div className="btn btn-primary bottom-button" onClick={this.authenticate}>Login</div>
-					<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="meme-image-input" />
+					<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="car-image-input" />
 				</div>
 			</Modal> : ""}
 			<div className="header-wrapper">
 				<div className="container header">
-					<img src={PatrickLogo} height='60'/>&nbsp; JDM Garage &nbsp;
+					<img src={domologo} height='60'/>&nbsp; JDM Garage &nbsp;
 					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add </div>
-					....................................
+				
 				</div>
 			</div>
 			<div className="container">
@@ -91,8 +91,8 @@ class App extends React.Component<{}, IState> {
 					<div className="form-group">
 						<label>Image</label>
 						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="car-image-input" />
+						<button type="button" className="btn" onClick={this.uploadCar}>Upload</button>
 					</div>
-					<button type="button" className="btn" onClick={this.uploadCar}>Upload</button>
 				</form>
 			</Modal>
 		</div>
@@ -111,7 +111,7 @@ private getFaceRecognitionResult(image: string) {
 	fetch(url, {
 		body: byteArray,
 		headers: {
-			'cache-control': 'no-cache', 'Prediction-Key':'0dc26afa-22c6-414a-a7b5-d74474411641', 'API-KEY':'8e0e66818132417fa70274b1368df125','Content-Type': 'application/octet-stream'
+			'cache-control': 'no-cache', 'Prediction-Key':'9d6bc665d0e245eaa38ed90510289bdc', 'API-KEY':'DRVpOk+6glN7V9gicUk7tyIu2VFEpPN+ZNekwQBWKnlgIzkr6+8ZB3OL6PdNkc8LYnuiq45gq79MdhoABVXEuw==','Content-Type': 'application/octet-stream'
 		},
 		method: 'POST'
 	})

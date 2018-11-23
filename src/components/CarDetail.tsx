@@ -69,7 +69,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
 		this.setState({ open: false });
     };
 
-    // Open meme image in new tab
+    // Open car image in new tab
     private downloadCar(url: any) {
         window.open(url);
     }
