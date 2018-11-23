@@ -1,9 +1,12 @@
 import * as React from "react";
 
+
+
+
 interface IProps {
     Cars: any[],
     selectNewCar: any,
-    searchByTag: any
+    searchByTag: any,
 }
 
 export default class CarList extends React.Component<IProps, {}> {
@@ -20,7 +23,7 @@ export default class CarList extends React.Component<IProps, {}> {
                         <input type="text" id="search-tag-textbox" className="form-control" placeholder="Search By Tags" />
                         <div className="input-group-append">
                             <div className="btn btn-outline-secondary search-button" onClick = {this.searchByTag}>Search</div>
-                    
+
                         </div>
                     </div>  
                 </div>

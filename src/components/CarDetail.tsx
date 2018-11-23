@@ -112,6 +112,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
                 "Engine": currentCar.Engine,
                 "Cylinders":currentCar.Cylinders
             }),
+            
             headers: {'cache-control': 'no-cache','Content-Type': 'application/json'},
             method: 'PUT'
         })
