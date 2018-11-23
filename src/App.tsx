@@ -7,6 +7,7 @@ import PatrickLogo from './patrick-logo.png';
 
 
 
+
 interface IState {
 	currentCar: any,
 	cars: any[],
@@ -49,7 +50,7 @@ this.fetchCars("")
 						<CarDetail currentCar={this.state.currentCar} />
 					</div>
 					<div className="col-5">
-						<CarList Cars={this.state.cars} selectNewCar={this.selectNewCar} searchByTag={this.methodNotImplemented}/>
+						<CarList Cars={this.state.cars} selectNewCar={this.selectNewCar} searchByTag={this.fetchCars}/>
 					</div>
 				</div>
 			</div>
@@ -77,9 +78,6 @@ this.fetchCars("")
 		);
 	}
 
-	private methodNotImplemented() {
-		alert("Method not implemented")
-	}
 
 	// Modal open
 	private onOpenModal = () => {
@@ -99,7 +97,7 @@ this.fetchCars("")
 	}
 	private fetchCars(tag: any) {
 		
-		let url = "https://msacarapi.azurewebsites.net/api/CarItems"
+		let url = "https://redo-msacarapi.azurewebsites.net/api/CarItems"
 		if (tag !== "") {
 			url += "/tag?=" + tag
 			
@@ -112,7 +110,7 @@ this.fetchCars("")
 		.then(json => {
 			let currentCar = json[0]
 			if (currentCar === undefined) {
-				currentCar = {"id":0, "title":"No memes (╯°□°）╯︵ ┻━┻","url":"","tags":"try a different tag","uploaded":"","width":"0","height":"0"}
+				currentCar = {"id":0, "title":"tag","uploaded":"","width":"0","height":"0"}
 			}
 			this.setState({
 				currentCar,
@@ -136,7 +134,7 @@ this.fetchCars("")
 	
 		const title = titleInput.value
 		const tag = tagInput.value
-		const url = "https://msacarapi.azurewebsites.net/api/CarItems/upload"
+		const url = "https://redo-msacarapi.azurewebsites.net/api/CarItems/upload"
 	
 		const formData = new FormData()
 		formData.append("Title", title)

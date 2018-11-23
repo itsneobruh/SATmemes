@@ -16,7 +16,8 @@ export default class CarDetail extends React.Component<IProps, IState> {
         this.state = {
             open: false
         }
-
+        this.updateCar = this.updateCar.bind(this)
+        this.deleteCar = this.deleteCar.bind(this)
     }
 
 	public render() {
@@ -37,7 +38,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
                 <div className="row car-done-button">
                     <div className="btn btn-primary btn-action" onClick={this.downloadCar.bind(this, currentCar.url)}>Download </div>
                     <div className="btn btn-primary btn-action" onClick={this.onOpenModal}>Edit </div>
-                    <div className="btn btn-primary btn-action" onClick={this.methodNotImplemented.bind(this, currentCar.id)}>Delete </div>
+                    <div className="btn btn-primary btn-action" onClick={this.deleteCar.bind(this, currentCar.id)}>Delete </div>
                 </div>
                 <Modal open={open} onClose={this.onCloseModal}>
                     <form>
@@ -51,7 +52,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
                             <input type="text" className="form-control" id="Car-edit-tag-input" placeholder="Enter Tag"/>
                             <small className="form-text text-muted">Tag is used for search</small>
                         </div>
-                        <button type="button" className="btn" onClick={this.methodNotImplemented}>Save</button>
+                        <button type="button" className="btn" onClick={this.updateCar}>Save</button>
                     </form>
                 </Modal>
             </div>
@@ -67,13 +68,59 @@ export default class CarDetail extends React.Component<IProps, IState> {
     private onCloseModal = () => {
 		this.setState({ open: false });
     };
-    
-    private methodNotImplemented() {
-		alert("Method not implemented")
-	}
 
     // Open meme image in new tab
     private downloadCar(url: any) {
         window.open(url);
+    }
+    private updateCar(){
+        const titleInput = document.getElementById("car-edit-title-input") as HTMLInputElement
+        const tagInput = document.getElementById("car-edit-tag-input") as HTMLInputElement
+    
+        if (titleInput === null || tagInput === null) {
+            return;
+        }
+    
+        const currentCar = this.props.currentCar
+        const url = "http://msacarapi.azurewebsites.net/api/meme/" + currentCar.id
+        const updatedTitle = titleInput.value
+        const updatedTag = tagInput.value
+        fetch(url, {
+            body: JSON.stringify({
+                "height": currentCar.height,
+                "id": currentCar.id,
+                "tags": updatedTag,
+                "title": updatedTitle,
+                "uploaded": currentCar.uploaded,
+                "url": currentCar.url,
+                "width": currentCar.width
+            }),
+            headers: {'cache-control': 'no-cache','Content-Type': 'application/json'},
+            method: 'PUT'
+        })
+        .then((response : any) => {
+            if (!response.ok) {
+                // Error State
+                alert(response.statusText + " " + url)
+            } else {
+                location.reload()
+            }
+        })
+    }
+    private deleteCar(id: any) {
+        const url = "http://msacarapi.azurewebsites.net/api/CarItem/" + id
+    
+        fetch(url, {
+            method: 'DELETE'
+        })
+        .then((response : any) => {
+            if (!response.ok) {
+                // Error Response
+                alert(response.statusText)
+            }
+            else {
+                location.reload()
+            }
+        })
     }
 }
