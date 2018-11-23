@@ -131,7 +131,7 @@ class App extends React.Component<{}, IState> {
 	
 		const title = titleInput.value
 		const tag = tagInput.value
-		const url = "https://themsacarapi.azurewebsites.net/api/CarItems/upload"
+		const url = "https://thecarapi.azurewebsites.net/api/CarItems/upload"
 	
 		const formData = new FormData()
 		formData.append("Title", title)

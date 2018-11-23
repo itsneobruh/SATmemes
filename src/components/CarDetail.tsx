@@ -74,7 +74,7 @@ export default class CarDetail extends React.Component<IProps, IState> {
         window.open(url);
     }
     private deleteCar(id: any) {
-        const url = "http://themsacarapi.azurewebsites.net/api/CarItem/" + id
+        const url = "https://thecarapi.azurewebsites.net/api/CarItems/" + id
     
         fetch(url, {
             method: 'DELETE'
